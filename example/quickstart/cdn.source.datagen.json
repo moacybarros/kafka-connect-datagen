@@ -1,0 +1,17 @@
+{
+  "name": "cdn.source.datagen",
+  "config": {
+    "connector.class": "com.github.xushiyan.kafka.connect.datagen.performance.DatagenConnector",
+    "tasks.max": "1",
+    "topic.name": "cdn_events",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": false,
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter.schemas.enable": false,
+    "poll.size": 10,
+    "poll.interval.ms": 5000,
+    "message.template": "{\"uuid\":\"\", \"client_ip\":\"\",\"request_time\": \"\", \"response_size\": \"\", \"uri\": \"\"}",
+    "random.fields": "uuid:uuid, client_ip:random_ip, request_time:random_int|100|2000, response_size:random_int|200|50000, uri:https//www.aliyun.com/activity?spm=5176.12825654.h2v3icoap.1.54212c4a3UoADs#/promotionArea|https//www.aliyun.com/product/bastionhost?spm=5176.224200.h2v3icoap.119.1f956ed6muyb0V&aly_as=96NleqHS|https//www.aliyun.com/solution/yiqing/index?spm=5176.141278.h2v3icoap.534.427b70fecB9mJe&aly_as=4vI70jpZ|https//www.aliyun.com/notfound/|https//www.aliyun.com/solution/all?spm=5176.141278.h2v3icoap.4.427b70feEbSUkR&aly_as=Pmz98PMp|https//www.aliyun.com/contact?spm=5176.13342246.h2v3icoap.6.6b523ccbclCtI7&aly_as=NCEFvD1Q|https//www.aliyun.com/about?spm=a2c4g.11186623.h2v3icoap.10.2e678771j6qzAb|https//www.aliyun.com/ss/?spm=5176.7920199.1kquk9v2l.3.610951f4HI0mNh",
+    "event.timestamp.field": "event_ts"
+  }
+}

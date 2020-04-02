@@ -30,6 +30,20 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class DatagenTask extends SourceTask {
+    private static final String[] ips = new String[]{
+            "27.128.178",
+            "1.8.110",
+            "1.15.255",
+            "14.102.158",
+            "14.104.149",
+            "220.243.255",
+            "1.69.127",
+            "1.180.240",
+            "36.24.191",
+            "14.18.159",
+            "39.169.231"};
+
+    private Random random = new Random();
     private DatagenConnectorConfig config;
     private Gson gson;
     private JsonObject messageTemplate;
@@ -71,7 +85,17 @@ public class DatagenTask extends SourceTask {
 
             for (Map.Entry<String, String[]> entry : randomFieldsValueMap.entrySet()) {
                 String[] values = entry.getValue();
-                msg.addProperty(entry.getKey(), values[randomizer.nextInt(values.length)]);
+                if (entry.getValue().length == 1 && entry.getValue()[0].equals("random_ip")) {
+                    msg.addProperty(entry.getKey(), randomIP());
+                } else if (entry.getValue().length == 1 && entry.getValue()[0].equals("uuid")) {
+                    msg.addProperty(entry.getKey(), UUID.randomUUID().toString());
+                } else if (entry.getValue()[0].startsWith("random_int")) {
+                    int lowerBound = Integer.parseInt(entry.getValue()[1]);
+                    int upperBound = Integer.parseInt(entry.getValue()[2]);
+                    msg.addProperty(entry.getKey(), randomInt(lowerBound, upperBound));
+                } else {
+                    msg.addProperty(entry.getKey(), values[randomizer.nextInt(values.length)]);
+                }
             }
 
             Instant now = Instant.now();
@@ -87,5 +111,13 @@ public class DatagenTask extends SourceTask {
 
     public void stop() {
 
+    }
+
+    private String randomIP() {
+        return ips[random.nextInt(ips.length)] + "." + random.nextInt(256);
+    }
+
+    private int randomInt(int lowerBound, int upperBound) {
+        return random.nextInt(upperBound - lowerBound) + lowerBound;
     }
 }
