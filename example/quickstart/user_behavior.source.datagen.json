@@ -1,0 +1,16 @@
+{
+  "name": "user_behavior.source.datagen",
+  "config": {
+    "connector.class": "com.github.xushiyan.kafka.connect.datagen.performance.DatagenConnector",
+    "tasks.max": "1",
+    "topic.name": "user_behavior_events",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": false,
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter.schemas.enable": false,
+    "poll.size": 10,
+    "poll.interval.ms": 5000,
+    "message.template": "{\"user_id\":\"\", \"item_id\":\"\",\"category_id\": \"\", \"behavior_type\": \"\", \"timestamp\": \"\"}",
+    "random.fields": "fromFile:/tmp/data/UserBehavior_mini.csv"
+  }
+}

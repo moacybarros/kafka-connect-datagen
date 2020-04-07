@@ -72,6 +72,7 @@ services:
       CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
     volumes:
       - ./plugins:/tmp/connect-plugins
+      - ./data:/tmp/data
 
   kafka-rest-proxy:
     image: confluentinc/cp-kafka-rest:4.1.1
