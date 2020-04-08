@@ -35,17 +35,16 @@ import java.util.regex.Pattern;
 
 public class DatagenTask extends SourceTask {
     private static final String[] ips = new String[]{
-            "27.128.178",
+            "34.82.52",
             "1.8.110",
             "1.15.255",
-            "14.102.158",
-            "14.104.149",
-            "220.243.255",
-            "1.69.127",
-            "1.180.240",
-            "36.24.191",
-            "14.18.159",
-            "39.169.231"};
+            "59.184.138",
+            "210.138.184",
+            "57.93.153",
+            "82.11.67",
+            "23.248.160",
+            "87.241.40"
+    };
 
     private Random random = new Random();
     private DatagenConnectorConfig config;
